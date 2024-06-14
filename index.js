@@ -28,11 +28,15 @@ app.get("/api/hello", function (req, res) {
 });
 
 // POST request handler for form submission. 
-app.route("/api").post(function(req, res){
+app.route("/tester").post(function(req, res){
   console.log(req.body.date)
   res.redirect('/api/' + req.body.date)
 })
 
+app.get("/api", function(req, res){
+  let date = new Date()
+  res.json({unix: date.getTime(), utc: date.toUTCString()})
+})
 
 app.get("/api/:date", 
   //First function converts the param into a date object
